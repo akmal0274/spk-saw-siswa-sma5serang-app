@@ -10,33 +10,49 @@ class App {
     public function __construct() {
         $url = $this->parseURL();
 
-        // Cek controller
-        if (isset($url[0])) {
-            $controllerName = ucfirst($url[0]) . 'Controller';
-            $controllerPath = __DIR__ . '/../app/controllers/' . $controllerName . '.php';
+        // Default namespace/prefix
+        $prefix = '';
+
+        // Cek prefix (admin/user)
+        if (isset($url[0]) && in_array(strtolower($url[0]), ['admin', 'user'])) {
+            $prefix = ucfirst(strtolower($url[0])); // Admin atau User
+            unset($url[0]);
+        }
+
+        // Ambil controller
+        if (isset($url[1])) {
+            $controllerName = ucfirst($url[1]) . 'Controller';
+            $controllerPath = __DIR__ . '/../app/controllers/' . $prefix . $controllerName . '.php';
             if (file_exists($controllerPath)) {
-                $this->controller = $controllerName;
-                unset($url[0]);
-                self::$currentController = str_replace('Controller', '', $this->controller);
+                $this->controller = $prefix . $controllerName;
+                unset($url[1]);
+            }
+        } else {
+            // Default controller
+            if ($prefix) {
+                $this->controller = $prefix . 'DashboardController';
             }
         }
 
-        require_once  __DIR__ . '/../app/controllers/' . $this->controller . '.php';
+        // Save nama untuk global
+        self::$currentController = $this->controller;
+
+        require_once __DIR__ . '/../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        // Cek method
-        if (isset($url[1])) {
-            if (method_exists($this->controller, $url[1])) {
-                $this->method = $url[1];
-                unset($url[1]);
-                self::$currentMethod = $this->method;
+        // Method
+        if (isset($url[2])) {
+            if (method_exists($this->controller, $url[2])) {
+                $this->method = $url[2];
+                unset($url[2]);
             }
         }
+
+        self::$currentMethod = $this->method;
 
         // Params
         $this->params = $url ? array_values($url) : [];
 
-        // Panggil controller & method & params
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
