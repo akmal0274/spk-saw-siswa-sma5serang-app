@@ -1,15 +1,15 @@
 <div class="col-md-12">
     <h2 class="text-gray-900">
-        Data Siswa
+        Data Kriteria
     </h2>
     <div class="card shadow">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="modal-title text-gray-900">Daftar Data Siswa</h5>
+            <h5 class="modal-title text-gray-900">Daftar Data Kriteria</h5>
             <div>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/siswa/tambah" class="btn btn-primary mr-2">
+                <a href="/spk-saw-siswa-sma5serang-app/admin/kriteria/tambah" class="btn btn-primary mr-2">
                     <i class="fas fa-plus"></i> Tambah Data
                 </a>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/siswa/cetak" class="btn btn-secondary">
+                <a href="/spk-saw-siswa-sma5serang-app/admin/kriteria/cetak" class="btn btn-secondary">
                     <i class="fas fa-print"></i> Cetak Data
                 </a>
             </div>
@@ -20,27 +20,27 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>NIS</th>
-                        <th>Nama Siswa</th>
-                        <th>Kelas</th>
-                        <th>Tahun Ajaran</th>
+                        <th>Kode Kriteria</th>
+                        <th>Kriteria</th>
+                        <th>Tipe</th>
+                        <th>Bobot</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (count($data['siswa']) > 0): ?>
-                        <?php $no = 1; foreach ($data['siswa'] as $k): ?>
+                    <?php if (count($data['kriteria']) > 0): ?>
+                        <?php $no = 1; foreach ($data['kriteria'] as $k): ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= htmlspecialchars($k['NIS_siswa']) ?></td>
-                            <td><?= htmlspecialchars($k['nama_siswa']) ?></td>
-                            <td><?= htmlspecialchars($k['kelas_siswa']) ?></td>
-                            <td><?= htmlspecialchars($k['tahun_ajaran_siswa']) ?></td>
+                            <td><?= htmlspecialchars($k['kode_kriteria']) ?></td>
+                            <td><?= htmlspecialchars($k['nama_kriteria']) ?></td>
+                            <td><?= ucfirst(htmlspecialchars($k['tipe_kriteria'])) ?></td>
+                            <td><?= htmlspecialchars($k['bobot_kriteria']) ?></td>
                             <td>
-                                <a href="/spk-saw-siswa-sma5serang-app/admin/siswa/edit/<?= $k['id'] ?>" class="btn btn-info">
+                                <a href="/spk-saw-siswa-sma5serang-app/admin/kriteria/edit/<?= $k['id'] ?>" class="btn btn-info">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="/spk-saw-siswa-sma5serang-app/admin/siswa/hapus/<?= $k['id'] ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin untuk menghapus kriteria ini?')">
+                                <form action="/spk-saw-siswa-sma5serang-app/admin/kriteria/hapus/<?= $k['id'] ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin untuk menghapus kriteria ini?')">
                                     <button type="submit" class="btn btn-info">
                                         <i class="fas fa-trash"></i>
                                     </button>
@@ -50,7 +50,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="3" class="text-center">Belum ada data siswa</td>
+                            <td colspan="6" class="text-center">Belum ada data kriteria</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

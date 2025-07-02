@@ -33,35 +33,35 @@ function is_active($controller, $method = '') {
         </a>
     </li>
 
-    <li class="nav-item <?= is_active('Kriteria') ?>">
+    <li class="nav-item <?= is_active('AdminKriteria') ?>">
         <a class="nav-link" href="/spk-saw-siswa-sma5serang-app/admin/kriteria">
             <i class="fas fa-tags"></i>
             <span>Kelola Kriteria</span>
         </a>
     </li>
 
-    <li class="nav-item <?= is_active('Subkriteria') ?>">
+    <li class="nav-item <?= is_active('AdminSubkriteria') ?>">
         <a class="nav-link" href="/spk-saw-siswa-sma5serang-app/admin/subkriteria">
             <i class="fas fa-certificate"></i>
             <span>Kelola Sub Kriteria</span>
         </a>
     </li>
 
-    <li class="nav-item <?= is_active('Alternatif') ?>">
+    <li class="nav-item <?= is_active('AdminAlternatif') ?>">
         <a class="nav-link" href="/spk-saw-siswa-sma5serang-app/admin/alternatif">
             <i class="fas fa-balance-scale"></i>
             <span>Input Penilaian</span>
         </a>
     </li>
 
-    <li class="nav-item <?= is_active('Saw') ?>">
+    <li class="nav-item <?= is_active('AdminSaw') ?>">
         <a class="nav-link" href="/spk-saw-siswa-sma5serang-app/admin/saw">
             <i class="fas fa-calculator"></i>
             <span>Proses SAW</span>
         </a>
     </li>
 
-    <li class="nav-item <?= is_active('RankingAkhir') ?>">
+    <li class="nav-item <?= is_active('AdminRankingakhir') ?>">
         <a class="nav-link" href="/spk-saw-siswa-sma5serang-app/admin/rankingakhir">
             <i class="fas fa-medal"></i>
             <span>Lihat Hasil</span>

@@ -79,6 +79,7 @@ class AdminSiswaController extends Controller {
                         <th>Nama Siswa</th>
                         <th>NIS</th>
                         <th>Kelas</th>
+                        <th>Tahun Ajaran</th>
                     </tr>
                 </thead>
                 <tbody>';
@@ -90,6 +91,7 @@ class AdminSiswaController extends Controller {
                     <td>' . htmlspecialchars($siswa['nama']) . '</td>
                     <td>' . htmlspecialchars($siswa['nis']) . '</td>
                     <td>' . htmlspecialchars($siswa['kelas']) . '</td>
+                    <td>' . htmlspecialchars($siswa['tahun_ajaran']) . '</td>
                 </tr>';
         }
 
