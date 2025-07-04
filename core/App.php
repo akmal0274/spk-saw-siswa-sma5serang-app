@@ -3,54 +3,83 @@ class App {
     public static $currentController = '';
     public static $currentMethod = '';
 
-    protected $controller = 'DashboardController';
-    protected $method = 'index';
+    protected $controllerName = 'AuthController';
+    protected $controller;
+    protected $method = 'login';
     protected $params = [];
 
     public function __construct() {
         $url = $this->parseURL();
 
-        // Default namespace/prefix
+        // Default prefix: none
         $prefix = '';
 
-        // Cek prefix (admin/user)
-        if (isset($url[0]) && in_array(strtolower($url[0]), ['admin', 'user'])) {
-            $prefix = ucfirst(strtolower($url[0])); // Admin atau User
-            unset($url[0]);
+        if (isset($url[0])) {
+            $first = strtolower($url[0]);
+
+            if ($first === 'admin' || $first === 'user') {
+                $prefix = ucfirst($first); // Admin/User
+                unset($url[0]);
+
+                if (isset($url[1])) {
+                    $controllerName = ucfirst($url[1]) . 'Controller';
+                    $controllerPath = __DIR__ . '/../app/controllers/' . $prefix . $controllerName . '.php';
+
+                    if (file_exists($controllerPath)) {
+                        $this->controllerName = $prefix . $controllerName;
+                        unset($url[1]);
+                    } else {
+                        die("Controller NOT FOUND: " . $controllerPath);
+                    }
+                } else {
+                    // default dashboard
+                    $this->controllerName = $prefix . 'DashboardController';
+                }
+
+            } elseif ($first === 'auth') {
+                if (isset($url[1])) {
+                    $controllerName = ucfirst($url[1]) . 'Controller';
+                    $controllerPath = __DIR__ . '/../app/controllers/' . $controllerName . '.php';
+
+                    if (file_exists($controllerPath)) {
+                        $this->controllerName = $controllerName;
+                        unset($url[1]);
+                    } else {
+                        $this->controllerName = 'AuthController';
+                    }
+                } else {
+                    $this->controllerName = 'AuthController';
+                }
+                unset($url[0]);
+            } else {
+                // fallback default ➜ jika root: redirect ke login atau dashboard tergantung session
+                $this->controllerName = 'AuthController';
+            }
         }
 
-        // Ambil controller
-        if (isset($url[1])) {
-            $controllerName = ucfirst($url[1]) . 'Controller';
-            $controllerPath = __DIR__ . '/../app/controllers/' . $prefix . $controllerName . '.php';
-            if (file_exists($controllerPath)) {
-                $this->controller = $prefix . $controllerName;
-                unset($url[1]);
-            }
+        self::$currentController = $this->controllerName;
+
+        require_once __DIR__ . '/../app/controllers/' . $this->controllerName . '.php';
+        $this->controller = new $this->controllerName;
+
+        if (strpos(get_class($this->controller), 'AdminDashboardController') !== false) {
+            $this->method = 'index';
+        } elseif (isset($url[2]) && method_exists($this->controller, $url[2])) {
+            $this->method = $url[2];
+            unset($url[2]);
+        } elseif (isset($url[1]) && method_exists($this->controller, $url[1])) {
+            $this->method = $url[1];
+            unset($url[1]);
         } else {
-            // Default controller
-            if ($prefix) {
-                $this->controller = $prefix . 'DashboardController';
-            }
-        }
-
-        // Save nama untuk global
-        self::$currentController = $this->controller;
-
-        require_once __DIR__ . '/../app/controllers/' . $this->controller . '.php';
-        $this->controller = new $this->controller;
-
-        // Method
-        if (isset($url[2])) {
-            if (method_exists($this->controller, $url[2])) {
-                $this->method = $url[2];
-                unset($url[2]);
+            if ($this->controller === 'AuthController') {
+                $this->method = 'login';
+            } else {
+                $this->method = 'index';
             }
         }
 
         self::$currentMethod = $this->method;
 
-        // Params
         $this->params = $url ? array_values($url) : [];
 
         call_user_func_array([$this->controller, $this->method], $this->params);

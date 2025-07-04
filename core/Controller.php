@@ -1,16 +1,33 @@
 <?php
 class Controller {
-    public function __construct()
-    {
-        // Cek session login
+    public function __construct() {
+        if (isset($_GET['url']) && strpos($_GET['url'], 'logout') !== false) {
+            return;
+        }
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $current = get_class($this);
+
         if (!isset($_SESSION['user'])) {
-            // Kecuali untuk controller Auth
-            if (get_class($this) !== 'AuthController') {
+            if ($current !== 'AuthController') {
                 header('Location: /spk-saw-siswa-sma5serang-app/auth/login');
+                exit;
+            }
+        } else {
+            if ($current === 'AuthController') {
+                if ($_SESSION['user']['role'] === 'admin') {
+                    header('Location: /spk-saw-siswa-sma5serang-app/admin/dashboard');
+                } else {
+                    header('Location: /spk-saw-siswa-sma5serang-app/user/dashboard');
+                }
                 exit;
             }
         }
     }
+
     public function model($model) {
         require_once __DIR__ . '/../app/models/' . $model . '.php';
         return new $model;

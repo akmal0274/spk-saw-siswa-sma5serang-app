@@ -11,10 +11,6 @@ class AdminDashboardController extends Controller {
         $model_subkriteria = $this->model('Subkriteria');
         $data['subkriteria'] = $model_subkriteria->getAll();
         
-        if (!isset($_SESSION['user'])) {
-            header('Location: /spk-saw-siswa-sma5serang-app/auth/login');
-            exit;
-        }
 
         $this->view('admin/dashboard/index', $data);   
     }
