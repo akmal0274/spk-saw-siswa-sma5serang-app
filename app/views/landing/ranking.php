@@ -7,7 +7,7 @@
     <form method="get" class="mb-3">
         <div class="row">
             <div class="col-md-4">
-                <label for="tahun" class="form-label text-gray-900">Pilih Tahun Ajaran:</label>
+                <label for="tahun" class="form-label">Pilih Tahun Ajaran:</label>
                 <select name="tahun" id="tahun" class="form-select" onchange="this.form.submit()">
                     <?php foreach ($data['groups'] as $tahun => $group): ?>
                         <option value="<?= htmlspecialchars($tahun) ?>"
@@ -32,7 +32,7 @@
                 <h5 class="m-0 text-gray-900">
                     Ranking Akhir - Tahun <?= htmlspecialchars($tahun_aktif) ?>
                 </h5>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/rankingakhir/cetak?tahun=<?= urlencode($tahun_aktif) ?>"
+                <a href="/spk-saw-siswa-sma5serang-app/user/landing/cetak?tahun=<?= urlencode($tahun_aktif) ?>"
                    class="btn btn-secondary">
                     <i class="fas fa-print"></i> Cetak Tahun Ini
                 </a>

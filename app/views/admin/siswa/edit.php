@@ -22,6 +22,14 @@
                     <input type="text" id="kelas_siswa" name="kelas_siswa" class="form-control" value="<?= $data['siswa']['kelas_siswa'] ?>" required>
                 </div>
                 <div class="form-group text-gray-900">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" class="form-control" required>
+                        <option value="">Pilih Jenis Kelamin</option>
+                        <option value="L" <?=$data['siswa']['jenis_kelamin_siswa'] == 'L' ? 'selected' : '' ?>>Laki-laki</option>
+                        <option value="P" <?= $data['siswa']['jenis_kelamin_siswa'] == 'P' ? 'selected' : '' ?>>Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group text-gray-900">
                     <label for="tahun_ajaran_siswa">Tahun Ajaran</label>
                     <input type="text" id="tahun_ajaran_siswa" name="tahun_ajaran_siswa" class="form-control" value="<?= $data['siswa']['tahun_ajaran_siswa'] ?>" required>
                 </div>

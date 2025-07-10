@@ -28,7 +28,7 @@
                         <label for="nilai_subkriteria">Nilai Subkriteria</label>
                         <select id="nilai_subkriteria" name="nilai_subkriteria" class="form-control" required>
                             <option value="">-- Pilih Nilai --</option>
-                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <?php for ($i = 0; $i <= 5; $i++): ?>
                                 <option value="<?= $i ?>" <?= $data['subkriteria']['nilai_subkriteria'] == $i ? 'selected' : '' ?>>
                                     <?= $i ?>
                                 </option>

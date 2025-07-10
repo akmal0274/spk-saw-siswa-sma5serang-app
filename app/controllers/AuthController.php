@@ -19,7 +19,7 @@ class AuthController extends Controller {
                 if ($user['role'] === 'admin') {
                     header('Location: /spk-saw-siswa-sma5serang-app/admin/dashboard');
                 } else {
-                    header('Location: /spk-saw-siswa-sma5serang-app/user/dashboard');
+                    header('Location: /spk-saw-siswa-sma5serang-app/user/landing/home');
                 }
                 exit;
             } else {
@@ -63,9 +63,4 @@ class AuthController extends Controller {
         header('Location: /spk-saw-siswa-sma5serang-app/auth/login');
         exit;
     }
-
-
-
-
-
 }

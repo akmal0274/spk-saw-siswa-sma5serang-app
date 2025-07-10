@@ -43,8 +43,8 @@
                 <div class="overlay"></div>
                 <div class="content text-center">
                     <img src="/spk-saw-siswa-sma5serang-app/public/assets/logo.png" alt="Logo Sekolah" style="max-width: 120px;">
-                    <h4 class="mt-3">SISTEM PENUNJANG KEPUTUSAN</h4>
-                    <h2>PENENTUAN SISWA BERPRESTASI</h2>
+                    <h4 class="mt-3">SISTEM PENDUKUNG KEPUTUSAN</h4>
+                    <h2>PENENTUAN SISWA TERBAIK</h2>
                 </div>
             </div>
 
@@ -58,10 +58,6 @@
                         </div>
                         <div class="form-group">
                             <input type="password" name="password" class="form-control" placeholder="Password" required>
-                        </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember Me</label>
                         </div>
                         <button type="submit" class="btn btn-info btn-block">
                             <i class="fas fa-sign-in-alt"></i> Masuk

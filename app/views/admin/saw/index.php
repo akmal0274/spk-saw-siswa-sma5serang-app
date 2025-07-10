@@ -3,47 +3,47 @@
         <i class="fas fa-calculator"></i> Perhitungan SAW
     </h2>
 
-    <!-- Tabs Navigation -->
-    <ul class="nav nav-tabs mb-4" id="sawTabs" role="tablist">
+    <?php foreach ($data['hasil'] as $tahun => $group): ?>
+
+    <h4 class="mb-3 text-gray-900">Tahun Ajaran: <?= htmlspecialchars($tahun) ?></h4>
+
+    <!-- Tabs Navigation per Tahun -->
+    <ul class="nav nav-tabs mb-4" id="sawTabs-<?= htmlspecialchars($tahun) ?>" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="bobot-tab" data-toggle="tab" href="#bobot" role="tab">Bobot Preferensi (W)</a>
+            <a class="nav-link active" data-bs-toggle="tab" href="#bobot-<?= htmlspecialchars($tahun) ?>">Bobot Preferensi (W)</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="matriks-tab" data-toggle="tab" href="#matriks" role="tab">Matriks Keputusan (X)</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#matriks-<?= htmlspecialchars($tahun) ?>">Matriks Keputusan (X)</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="normalisasi-tab" data-toggle="tab" href="#normalisasi" role="tab">Matriks Ternormalisasi (R)</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#normalisasi-<?= htmlspecialchars($tahun) ?>">Normalisasi (R)</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="ranking-tab" data-toggle="tab" href="#ranking" role="tab">Hasil Preferensi (V)</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#ranking-<?= htmlspecialchars($tahun) ?>">Hasil Preferensi (V)</a>
         </li>
     </ul>
-    <div class="tab-content" id="sawTabsContent">
+
+    <div class="tab-content">
         <!-- Bobot -->
-        <div class="tab-pane fade show active" id="bobot" role="tabpanel">
-            <div class="card shadow mb-4">
-                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                    <h5 class="m-0">Tabel Bobot Preferensi</h5>
-                </div>
+        <div class="tab-pane fade show active" id="bobot-<?= htmlspecialchars($tahun) ?>">
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">Tabel Bobot Preferensi</div>
                 <div class="card-body">
                     <table class="table table-bordered table-sm">
-                        <thead class="thead-light">
+                        <thead class="table-light">
                             <tr>
-                                <th>Kode Kriteria</th>
-                                <th>Nama Kriteria</th>
-                                <th>Bobot</th>
-                                <th>Tipe</th>
+                                <th>Kode</th><th>Nama</th><th>Bobot</th><th>Tipe</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data['kriteria'] as $k): ?>
+                        <?php foreach ($data['kriteria'] as $k): ?>
                             <tr>
-                                <td><?= htmlspecialchars($k['kode_kriteria']) ?></td>
-                                <td><?= htmlspecialchars($k['nama_kriteria']) ?></td>
-                                <td><?= htmlspecialchars($k['bobot_kriteria']) ?></td>
-                                <td><?= ucfirst(htmlspecialchars($k['tipe_kriteria'])) ?></td>
+                                <td><?= $k['kode_kriteria'] ?></td>
+                                <td><?= $k['nama_kriteria'] ?></td>
+                                <td><?= $k['bobot_kriteria'] ?></td>
+                                <td><?= ucfirst($k['tipe_kriteria']) ?></td>
                             </tr>
-                            <?php endforeach; ?>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -51,74 +51,72 @@
         </div>
 
         <!-- Matriks -->
-        <div class="tab-pane fade" id="matriks" role="tabpanel">
-            <div class="card shadow mb-4">
-                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                    <h5 class="m-0">Tabel Matriks Keputusan</h5>
-                </div>
+        <div class="tab-pane fade" id="matriks-<?= htmlspecialchars($tahun) ?>">
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">Tabel Matriks Keputusan</div>
                 <div class="card-body">
                     <table class="table table-bordered table-sm">
                         <thead class="thead-light">
                             <tr>
-                                <th rowspan="2" class="align-middle text-center">No</th>
-                                <th rowspan="2" class="align-middle text-center">Siswa</th>
+                                <th class="align-middle text-center" rowspan="2">No</th>
+                                <th class="align-middle text-center" rowspan="2">Nama Siswa</th>
                                 <?php foreach ($data['kriteria'] as $k): ?>
-                                    <th class="align-middle text-center"><?= htmlspecialchars($k['kode_kriteria'])?> - <?=htmlspecialchars($k['nama_kriteria']) ?></th>
+                                    <th class="align-middle text-center"><?= htmlspecialchars($k['kode_kriteria']) ?>-<?= htmlspecialchars($k['nama_kriteria']) ?></th>
                                 <?php endforeach; ?>
                             </tr>
                             <tr>
                                 <?php foreach ($data['kriteria'] as $k): ?>
-                                    <th class="align-middle text-center"><small><?= ucfirst(htmlspecialchars($k['tipe_kriteria'])) ?></small></th>
+                                    <th class="align-middle text-center">
+                                        <small><?= ucfirst(htmlspecialchars($k['tipe_kriteria'])) ?></small>
+                                    </th>
                                 <?php endforeach; ?>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                            // Siapkan untuk max min
-                            $max = [];
-                            $min = [];
-                            ?>
-                            <?php $no=1; foreach ($data['alternatif'] as $a): ?>
-                                <tr>
-                                    <td class="align-middle text-center"><?= $no++ ?></td>
-                                    <td><?= htmlspecialchars($a['nama_siswa']) ?></td>
-                                    <?php foreach ($data['kriteria'] as $k): ?>
-                                        <td class="align-middle text-center">
-                                        <?php
-                                        $nilai_sub = '-';
-                                        foreach ($a['nilai'] as $n) {
-                                            if ($n['kode_kriteria'] === $k['kode_kriteria']) {
-                                                $nilai_sub = $n['nilai_subkriteria'];
+                        <?php 
+                        $max = [];
+                        $min = [];
+                        ?>
+                        <?php $no=1; foreach ($group['alternatif'] as $a): ?>
+                        <tr>
+                            <td class="align-middle text-center"><?= $no++ ?></td>
+                            <td><?= htmlspecialchars($a['nama_siswa']) ?></td>
+                            <?php foreach ($data['kriteria'] as $k): ?>
+                            <td class="align-middle text-center">
+                                <?php
+                                $nilai_sub = '-';
+                                foreach ($a['nilai'] as $n) {
+                                    if ($n['kode_kriteria'] === $k['kode_kriteria']) {
+                                        $nilai_sub = $n['nilai_subkriteria'];
 
-                                                // Hitung max min
-                                                if (!isset($max[$k['kode_kriteria']]) || $nilai_sub > $max[$k['kode_kriteria']]) {
-                                                    $max[$k['kode_kriteria']] = $nilai_sub;
-                                                }
-                                                if (!isset($min[$k['kode_kriteria']]) || $nilai_sub < $min[$k['kode_kriteria']]) {
-                                                    $min[$k['kode_kriteria']] = $nilai_sub;
-                                                }
-
-                                                break;
-                                            }
+                                        // Hitung max/min
+                                        if (!isset($max[$k['kode_kriteria']]) || $nilai_sub > $max[$k['kode_kriteria']]) {
+                                        $max[$k['kode_kriteria']] = $nilai_sub;
                                         }
-                                        echo htmlspecialchars($nilai_sub);
-                                        ?>
-                                        </td>
-                                    <?php endforeach; ?>
-                                </tr>
+                                        if (!isset($min[$k['kode_kriteria']]) || $nilai_sub < $min[$k['kode_kriteria']]) {
+                                        $min[$k['kode_kriteria']] = $nilai_sub;
+                                        }
+                                        break;
+                                    }
+                                }
+                                echo htmlspecialchars($nilai_sub);
+                                ?>
+                            </td>
                             <?php endforeach; ?>
+                        </tr>
+                        <?php endforeach; ?>
                         </tbody>
                         <tfoot class="thead-light">
                             <tr>
-                                <th colspan="2" class="align-middle text-center">Max</th>
+                                <th colspan="2" class="text-center">Max</th>
                                 <?php foreach ($data['kriteria'] as $k): ?>
-                                    <th class="align-middle text-center"><?= isset($max[$k['kode_kriteria']]) ? htmlspecialchars($max[$k['kode_kriteria']]) : '-' ?></th>
+                                    <th class="text-center"><?= $group['max'][$k['kode_kriteria']] ?? '-' ?></th>
                                 <?php endforeach; ?>
                             </tr>
                             <tr>
-                                <th colspan="2" class="align-middle text-center">Min</th>
+                                <th colspan="2" class="text-center">Min</th>
                                 <?php foreach ($data['kriteria'] as $k): ?>
-                                    <th class="align-middle text-center" ><?= isset($min[$k['kode_kriteria']]) ? htmlspecialchars($min[$k['kode_kriteria']]) : '-' ?></th>
+                                    <th class="text-center"><?= $group['min'][$k['kode_kriteria']] ?? '-' ?></th>
                                 <?php endforeach; ?>
                             </tr>
                         </tfoot>
@@ -128,10 +126,10 @@
         </div>
         
         <!-- Normalisasi -->
-        <div class="tab-pane fade" id="normalisasi" role="tabpanel">
-            <div class="card shadow mb-4">
+        <div class="tab-pane fade" id="normalisasi-<?= htmlspecialchars($tahun) ?>">
+            <div class="card mb-4">
                 <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                    <h5 class="m-0">Hasil Normalisasi</h5>
+                    Hasil Normalisasi
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-sm">
@@ -146,12 +144,14 @@
                             </tr>
                             <tr>
                                 <?php foreach ($data['kriteria'] as $k): ?>
-                                    <th class="text-center"><small><?= ucfirst($k['tipe_kriteria']) ?></small></th>
+                                    <th class="text-center">
+                                        <small><?= ucfirst(htmlspecialchars($k['tipe_kriteria'])) ?></small>
+                                    </th>
                                 <?php endforeach; ?>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no = 1; foreach ($data['alternatif'] as $a): ?>
+                            <?php $no = 1; foreach ($group['alternatif'] as $a): ?>
                                 <tr>
                                     <td class="align-middle text-center"><?= $no++ ?></td>
                                     <td><?= htmlspecialchars($a['nama_siswa']) ?></td>
@@ -161,11 +161,11 @@
                                                 $kode = $k['kode_kriteria'];
                                                 $tipe = $k['tipe_kriteria'];
 
-                                                $nilai = isset($matrix[$a['id']][$kode]) ? $matrix[$a['id']][$kode] : null;
+                                                $nilai = isset($group['matrix'][$a['id']][$kode]) ? $group['matrix'][$a['id']][$kode] : null;
                                                 $hasil = isset($a['normalisasi'][$kode]) ? $a['normalisasi'][$kode] : null;
 
-                                                $maxval = isset($max[$kode]) ? $max[$kode] : null;
-                                                $minval = isset($min[$kode]) ? $min[$kode] : null;
+                                                $maxval = isset($group['max'][$kode]) ? $group['max'][$kode] : null;
+                                                $minval = isset($group['min'][$kode]) ? $group['min'][$kode] : null;
 
                                                 if ($nilai !== null && $hasil !== null) {
                                                     if ($tipe === 'benefit') {
@@ -182,14 +182,11 @@
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
-                            <!-- Baris Bobot Kriteria -->
                         <tfoot class="thead-light">
                             <tr>
                                 <th colspan="2" class="align-middle text-center">Bobot</th>
                                 <?php foreach ($data['kriteria'] as $k): ?>
-                                    <th class="text-center">
-                                        <?= htmlspecialchars($k['bobot_kriteria']) ?>
-                                    </th>
+                                    <th class="text-center"><?= htmlspecialchars($k['bobot_kriteria']) ?></th>
                                 <?php endforeach; ?>
                             </tr>
                         </tfoot>
@@ -198,43 +195,34 @@
             </div>
         </div>
 
+
         <!-- Ranking -->
-        <div class="tab-pane fade" id="ranking" role="tabpanel">
-            <div class="card shadow mb-4">
-                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                    <h5 class="m-0">Hasil Preferensi</h5>
-                </div>
+        <div class="tab-pane fade" id="ranking-<?= htmlspecialchars($tahun) ?>">
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">Hasil Preferensi</div>
                 <div class="card-body">
                     <table class="table table-bordered table-sm">
                         <thead class="thead-light">
                             <tr>
-                                <th class="align-middle text-center">No</th>
-                                <th class="align-middle text-center">Siswa</th>
-                                <th class="align-middle text-center">Hasil Preferensi</th>
+                                <th>No</th><th>Nama Siswa</th><th>Nilai Akhir</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                            $no = 1;
-                            foreach ($data['hasil_preferensi'] as $hp): 
-                            ?>
-                                <tr>
-                                    <td class="align-middle text-center">
-                                        <?= $no++ ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($hp['nama_siswa']) ?>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <?= htmlspecialchars($hp['nilai_akhir']) ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
+                        <?php $no = 1; foreach ($group['ranking'] as $r): ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><?= $r['nama_siswa'] ?></td>
+                                <td><?= $r['nilai_akhir'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
     </div>
-    
+
+    <?php endforeach; ?>
+
 </div>

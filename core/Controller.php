@@ -21,7 +21,7 @@ class Controller {
                 if ($_SESSION['user']['role'] === 'admin') {
                     header('Location: /spk-saw-siswa-sma5serang-app/admin/dashboard');
                 } else {
-                    header('Location: /spk-saw-siswa-sma5serang-app/user/dashboard');
+                    header('Location: /spk-saw-siswa-sma5serang-app/user/landing/home');
                 }
                 exit;
             }

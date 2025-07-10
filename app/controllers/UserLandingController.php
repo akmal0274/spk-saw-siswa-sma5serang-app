@@ -1,8 +1,17 @@
 <?php
-class AdminRankingakhirController extends Controller
-{
-    public function index()
-    {
+class UserLandingController extends Controller {
+    public function home() {
+        $data['title'] = 'Home - SMA N 5 Serang';
+        $this->view('landing/home', $data);
+    }
+
+    public function about() {
+        $data['title'] = 'About - SMA N 5 Serang';
+        $this->view('landing/about', $data);
+    }
+
+    public function ranking() {
+        $data['title'] = 'Ranking - SMA N 5 Serang';
         $model_alternatif = $this->model('Alternatif');
         $alternatifs = $model_alternatif->getAll();
 
@@ -83,10 +92,8 @@ class AdminRankingakhirController extends Controller
             'kriteria' => $kriteria
         ];
 
-        $this->view('admin/rankingakhir/index', $data);
+        $this->view('landing/ranking', $data);
     }
-
-
 
     public function cetak()
     {
@@ -213,10 +220,30 @@ class AdminRankingakhirController extends Controller
 
         echo '<div class="text-center no-print mt-4">
                 <button class="btn btn-primary" onclick="window.print()">Cetak / Print</button>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/rankingakhir" class="btn btn-secondary">Kembali</a>
+                <a href="/spk-saw-siswa-sma5serang-app/user/landing/ranking" class="btn btn-secondary">Kembali</a>
             </div>';
 
         echo '</div></body></html>';
     }
 
+    public function logout() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION = [];
+        session_destroy();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        session_regenerate_id(true);
+
+        header('Location: /spk-saw-siswa-sma5serang-app/auth/login');
+        exit;
+    }
 }

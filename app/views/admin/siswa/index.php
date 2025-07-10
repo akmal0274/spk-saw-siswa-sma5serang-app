@@ -23,6 +23,7 @@
                         <th>NIS</th>
                         <th>Nama Siswa</th>
                         <th>Kelas</th>
+                        <th>Jenis Kelamin</th>
                         <th>Tahun Ajaran</th>
                         <th>Aksi</th>
                     </tr>
@@ -35,6 +36,7 @@
                             <td><?= htmlspecialchars($k['NIS_siswa']) ?></td>
                             <td><?= htmlspecialchars($k['nama_siswa']) ?></td>
                             <td><?= htmlspecialchars($k['kelas_siswa']) ?></td>
+                            <td><?= htmlspecialchars($k['jenis_kelamin_siswa']) ?></td>
                             <td><?= htmlspecialchars($k['tahun_ajaran_siswa']) ?></td>
                             <td>
                                 <a href="/spk-saw-siswa-sma5serang-app/admin/siswa/edit/<?= $k['id'] ?>" class="btn btn-info">

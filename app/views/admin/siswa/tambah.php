@@ -22,6 +22,14 @@
                     <input type="text" id="kelas_siswa" name="kelas_siswa" class="form-control" required>
                 </div>
                 <div class="form-group text-gray-900">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" class="form-control" required>
+                        <option value="">Pilih Jenis Kelamin</option>
+                        <option value="L">Laki-laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group text-gray-900">
                     <label for="tahun_ajaran_siswa">Tahun Ajaran</label>
                     <input type="text" id="tahun_ajaran_siswa" name="tahun_ajaran_siswa" class="form-control" placeholder="Contoh : 2024/2025" required>
                 </div>
