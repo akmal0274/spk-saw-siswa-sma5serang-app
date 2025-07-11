@@ -22,8 +22,8 @@
                     <input type="text" id="kelas_siswa" name="kelas_siswa" class="form-control" required>
                 </div>
                 <div class="form-group text-gray-900">
-                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                    <select name="jenis_kelamin" class="form-control" required>
+                    <label for="jenis_kelamin_siswa">Jenis Kelamin</label>
+                    <select name="jenis_kelamin_siswa" class="form-control" required>
                         <option value="">Pilih Jenis Kelamin</option>
                         <option value="L">Laki-laki</option>
                         <option value="P">Perempuan</option>

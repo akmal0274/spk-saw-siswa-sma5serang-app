@@ -43,6 +43,7 @@
                         <tr>
                             <th class="align-middle text-center">Peringkat</th>
                             <th class="align-middle text-center">Nama Siswa</th>
+                            <th class="align-middle text-center">Jenis Kelamin</th>
                             <th class="align-middle text-center">Nilai Akhir</th>
                         </tr>
                     </thead>
@@ -51,6 +52,7 @@
                             <tr>
                                 <td class="align-middle text-center"><?= $rank++ ?></td>
                                 <td><?= htmlspecialchars($r['nama_siswa']) ?></td>
+                                <td class="align-middle text-center"><?= htmlspecialchars($r['jenis_kelamin_siswa']) ?></td>
                                 <td class="align-middle text-center"><?= htmlspecialchars($r['nilai_akhir']) ?></td>
                             </tr>
                         <?php endforeach; ?>

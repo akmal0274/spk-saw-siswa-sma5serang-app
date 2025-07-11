@@ -68,6 +68,7 @@ class AdminRankingakhirController extends Controller
 
                 $group['ranking'][] = [
                     'nama_siswa' => $a['nama_siswa'],
+                    'jenis_kelamin_siswa' => $a['jenis_kelamin_siswa'],
                     'nilai_akhir' => $a['nilai_akhir']
                 ];
             }

@@ -7,7 +7,7 @@
             </a>
         </div>
         <div class="card-body">
-            <form action="/spk-saw-siswa-sma5serang-app/admin/siswa/edit/<?= $data['siswa']['id'] ?>" method="POST">
+            <form action="/spk-saw-siswa-sma5serang-app/admin/siswa/edit/<?= htmlspecialchars($data['siswa']['id']) ?>" method="POST">
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <div class="form-group text-gray-900">
                     <label for="nis_siswa">NIS</label>
@@ -22,8 +22,8 @@
                     <input type="text" id="kelas_siswa" name="kelas_siswa" class="form-control" value="<?= $data['siswa']['kelas_siswa'] ?>" required>
                 </div>
                 <div class="form-group text-gray-900">
-                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                    <select name="jenis_kelamin" class="form-control" required>
+                    <label for="jenis_kelamin_siswa">Jenis Kelamin</label>
+                    <select name="jenis_kelamin_siswa" class="form-control" required>
                         <option value="">Pilih Jenis Kelamin</option>
                         <option value="L" <?=$data['siswa']['jenis_kelamin_siswa'] == 'L' ? 'selected' : '' ?>>Laki-laki</option>
                         <option value="P" <?= $data['siswa']['jenis_kelamin_siswa'] == 'P' ? 'selected' : '' ?>>Perempuan</option>

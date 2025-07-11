@@ -15,7 +15,7 @@ class AdminSiswaController extends Controller {
                 die('CSRF token tidak valid!');
             }
             $model = $this->model('Siswa');
-            $result = $model->insert($_POST['nama_siswa'], $_POST['nis_siswa'], $_POST['kelas_siswa'], $_POST['tahun_ajaran_siswa']);
+            $result = $model->insert($_POST['nama_siswa'], $_POST['nis_siswa'], $_POST['kelas_siswa'], $_POST['tahun_ajaran_siswa'], $_POST['jenis_kelamin_siswa']);
             if ($result === false) {
                 $_SESSION['message'] = "Gagal menambahkan siswa.";
                 $_SESSION['alert-type'] = "danger";
@@ -37,7 +37,7 @@ class AdminSiswaController extends Controller {
             if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
                 die('CSRF token tidak valid!');
             }
-            $result = $model->update($id, $_POST['nama_siswa'], $_POST['nis_siswa'], $_POST['kelas_siswa'], $_POST['tahun_ajaran_siswa']);
+            $result = $model->update($id, $_POST['nama_siswa'], $_POST['nis_siswa'], $_POST['kelas_siswa'], $_POST['tahun_ajaran_siswa'], $_POST['jenis_kelamin_siswa']);
             if ($result === false) {
                 $_SESSION['message'] = "Gagal mengedit siswa.";
                 $_SESSION['alert-type'] = "danger";
