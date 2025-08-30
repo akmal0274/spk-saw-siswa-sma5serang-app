@@ -19,7 +19,14 @@
                 </div>
                 <div class="form-group text-gray-900">
                     <label for="kelas_siswa">Kelas</label>
-                    <input type="text" id="kelas_siswa" name="kelas_siswa" class="form-control" required>
+                    <select id="kelas_siswa" name="kelas_siswa" class="form-control" required>
+                        <option value="">Pilih Kelas</option>
+                        <?php foreach ($data['kelas'] as $k): ?>
+                            <option value="<?= htmlspecialchars($k['kelas_siswa']) ?>">
+                                <?= htmlspecialchars($k['kelas_siswa']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group text-gray-900">
                     <label for="jenis_kelamin_siswa">Jenis Kelamin</label>
@@ -31,7 +38,14 @@
                 </div>
                 <div class="form-group text-gray-900">
                     <label for="tahun_ajaran_siswa">Tahun Ajaran</label>
-                    <input type="text" id="tahun_ajaran_siswa" name="tahun_ajaran_siswa" class="form-control" placeholder="Contoh : 2024/2025" required>
+                    <select id="tahun_ajaran_siswa" name="tahun_ajaran_siswa" class="form-control" required>
+                        <option value="">Pilih Tahun Ajaran</option>
+                        <?php foreach ($data['tahun_ajaran'] as $t): ?>
+                            <option value="<?= htmlspecialchars($t['tahun_ajaran_siswa']) ?>">
+                                <?= htmlspecialchars($t['tahun_ajaran_siswa']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>

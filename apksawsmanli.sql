@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2025 at 02:43 PM
+-- Generation Time: Aug 30, 2025 at 05:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,9 @@ CREATE TABLE `kriteria` (
 
 INSERT INTO `kriteria` (`id`, `kode_kriteria`, `nama_kriteria`, `tipe_kriteria`, `bobot_kriteria`) VALUES
 (1, 'C01', 'Nilai Rapor', 'benefit', 0.3),
-(2, 'C02', 'Kehadiran', 'benefit', 0.22);
+(2, 'C02', 'Kehadiran', 'benefit', 0.22),
+(3, 'C03', 'Sikap', 'benefit', 0.3),
+(4, 'C04', 'Prestasi', 'benefit', 0.18);
 
 -- --------------------------------------------------------
 
@@ -61,16 +63,38 @@ CREATE TABLE `nilai_alternatif` (
 --
 
 INSERT INTO `nilai_alternatif` (`id`, `id_siswa`, `id_kriteria`, `id_subkriteria`) VALUES
-(6, 2, 1, 2),
-(7, 2, 2, 4),
-(8, 3, 1, 1),
-(9, 3, 2, 3),
-(10, 4, 1, 10),
-(11, 4, 2, 4),
-(12, 5, 1, 2),
-(13, 5, 2, 3),
-(14, 6, 1, 8),
-(15, 6, 2, 5);
+(16, 7, 1, 1),
+(17, 7, 2, 3),
+(18, 7, 3, 11),
+(19, 7, 4, 16),
+(20, 8, 1, 2),
+(21, 8, 2, 3),
+(22, 8, 3, 11),
+(23, 8, 4, 16),
+(24, 9, 1, 2),
+(25, 9, 2, 4),
+(26, 9, 3, 13),
+(27, 9, 4, 19);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengaturan_kriteria`
+--
+
+CREATE TABLE `pengaturan_kriteria` (
+  `id` int(11) NOT NULL,
+  `kelas_siswa` varchar(100) NOT NULL,
+  `tahun_ajaran_siswa` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pengaturan_kriteria`
+--
+
+INSERT INTO `pengaturan_kriteria` (`id`, `kelas_siswa`, `tahun_ajaran_siswa`) VALUES
+(1, 'XII A', '2025/2026'),
+(3, 'XII B', '2025/2026');
 
 -- --------------------------------------------------------
 
@@ -93,11 +117,9 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `nama_siswa`, `NIS_siswa`, `kelas_siswa`, `jenis_kelamin_siswa`, `tahun_ajaran_siswa`, `is_valid`) VALUES
-(2, 'Budi', 1, 'XII B', 'L', '2024/2025', 1),
-(3, 'Dina', 2, 'XII A', 'P', '2024/2025', 1),
-(4, 'Aldo', 3, 'XII B', 'L', '2024/2025', 1),
-(5, 'Udin', 11, 'XII A', 'L', '2023/2024', 0),
-(6, 'Bani', 12, 'XII B', 'L', '2023/2024', 0);
+(7, 'Udin', 123, 'XII A', 'L', '2025/2026', 0),
+(8, 'Nia', 124, 'XII B', 'P', '2025/2026', 0),
+(9, 'Bani', 125, 'XII A', 'L', '2025/2026', 0);
 
 -- --------------------------------------------------------
 
@@ -126,7 +148,17 @@ INSERT INTO `subkriteria` (`id`, `nama_subkriteria`, `nilai_subkriteria`, `id_kr
 (7, 'Sangat Buruk', 1, 2),
 (8, '86-90 (Cukup)', 3, 1),
 (9, '81-85 (Kurang)', 2, 1),
-(10, '<80 (Perlu Ditingkatkan)', 1, 1);
+(10, '<80 (Perlu Ditingkatkan)', 1, 1),
+(11, 'Sangat Baik', 5, 3),
+(12, 'Baik', 4, 3),
+(13, 'Cukup', 3, 3),
+(14, 'Kurang', 2, 3),
+(15, 'Sangat Buruk', 1, 3),
+(16, 'Sangat Unggul', 5, 4),
+(17, 'Unggul', 4, 4),
+(18, 'Cukup', 3, 4),
+(19, 'Kurang Memadai', 2, 4),
+(20, 'Belum Memadai', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -173,6 +205,12 @@ ALTER TABLE `nilai_alternatif`
   ADD KEY `nilai_alternatif_subkriteria_id_foreign` (`id_subkriteria`);
 
 --
+-- Indexes for table `pengaturan_kriteria`
+--
+ALTER TABLE `pengaturan_kriteria`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
@@ -201,25 +239,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `pengaturan_kriteria`
+--
+ALTER TABLE `pengaturan_kriteria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`

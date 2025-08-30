@@ -88,4 +88,6 @@ class AdminKriteriaController extends Controller {
             </div>';
         echo '</div></body></html>';
     }
+
+    
 }

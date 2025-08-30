@@ -2,6 +2,7 @@
 class AdminSiswaController extends Controller {
     public function index() {
         $data['siswa'] = $this->model('Siswa')->getAllSiswa();
+        $data['tahun_kelas'] = $this->model('Siswa')->getAllTahunKelas();
         $this->view('admin/siswa/index', $data);
     }
 
@@ -9,12 +10,20 @@ class AdminSiswaController extends Controller {
         if (empty($_SESSION['csrf_token'])) {
             $_SESSION['csrf_token'] = bin2hex(md5(uniqid(mt_rand(), true)));
         }
-
+        $model = $this->model('Siswa');
+        if($model->getAllTahunKelas() == null) {
+            $_SESSION['message'] = "Belum input tahun ajaran dan kelas.";
+            $_SESSION['alert-type'] = "danger";
+            header('Location: /apksawsmanli/admin/siswa');
+            exit;
+        }
+        $data['tahun_ajaran'] = $this->model('Siswa')->getAllTahunInput();
+        $data['kelas'] = $this->model('Siswa')->getAllKelasInput();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
                 die('CSRF token tidak valid!');
             }
-            $model = $this->model('Siswa');
+            
             $result = $model->insert($_POST['nama_siswa'], $_POST['nis_siswa'], $_POST['kelas_siswa'], $_POST['tahun_ajaran_siswa'], $_POST['jenis_kelamin_siswa']);
             if ($result === false) {
                 $_SESSION['message'] = "Gagal menambahkan siswa.";
@@ -26,7 +35,7 @@ class AdminSiswaController extends Controller {
             header('Location: /apksawsmanli/admin/siswa');
             exit;
         }
-        $this->view('admin/siswa/tambah');
+        $this->view('admin/siswa/tambah', $data);
     }
 
     public function edit($id) {
@@ -105,4 +114,27 @@ class AdminSiswaController extends Controller {
         echo '</div></body></html>';
     }
 
+    public function simpanKelas(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $kelas = $_POST['kelas'];
+            $tahun = $_POST['tahun'];
+            $model = $this->model('Siswa');
+            $result=$model->insertTahunKelas($kelas, $tahun);
+            if ($result === false) {
+                $_SESSION['message'] = "Gagal menambahkan tahun ajaran dan kelas.";
+                $_SESSION['alert-type'] = "danger";
+            } else {
+                $_SESSION['message'] = "Tahun ajaran dan kelas berhasil ditambahkan.";
+                $_SESSION['alert-type'] = "success";
+            }
+            header('Location: /apksawsmanli/admin/siswa');
+            exit;
+        }
+    }
+
+    public function hapusTahunKelas($id) {
+        $model = $this->model('Siswa');
+        $model->deleteTahunKelas($id);
+        header('Location: /apksawsmanli/admin/siswa');
+    }
 }

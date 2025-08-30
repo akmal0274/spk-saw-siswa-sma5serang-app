@@ -36,7 +36,7 @@ class Kriteria extends Model {
         // cek total bobot
         $result = mysqli_query($this->conn, "SELECT SUM(bobot_kriteria) as total FROM kriteria");
         $row = mysqli_fetch_assoc($result);
-        $total = $row['total'] + $bobot;
+        $total = round($row['total'] + $bobot, 2);
 
         if ($total > 1) {
             return ['success' => false, 'message' => "Total bobot melebihi 1 (saat ini: {$total})."];
@@ -93,4 +93,5 @@ class Kriteria extends Model {
     public function delete($id) {
         return mysqli_query($this->conn, "DELETE FROM kriteria WHERE id=$id");
     }
+
 }
