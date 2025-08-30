@@ -77,7 +77,8 @@ class UserLandingController extends Controller {
 
                 $group['ranking'][] = [
                     'nama_siswa' => $a['nama_siswa'],
-                    'nilai_akhir' => $a['nilai_akhir']
+                    'nilai_akhir' => $a['nilai_akhir'],
+                    'is_valid' => $a['is_valid']
                 ];
             }
 
@@ -94,6 +95,25 @@ class UserLandingController extends Controller {
 
         $this->view('landing/ranking', $data);
     }
+
+    public function validasi()
+    {
+        $tahun = $_GET['tahun'] ?? null;
+        echo $tahun;
+
+        if (!$tahun) {
+            header('Location: /apksawsmanli/user/landing/ranking');
+            exit;
+        }
+
+        $model_alternatif = $this->model('Alternatif');
+
+        $model_alternatif->validasiTahun($tahun);
+
+        header('Location: /apksawsmanli/user/landing/ranking?tahun=' . urlencode($tahun));
+        exit;
+    }
+
 
     public function cetak()
     {
@@ -220,7 +240,7 @@ class UserLandingController extends Controller {
 
         echo '<div class="text-center no-print mt-4">
                 <button class="btn btn-primary" onclick="window.print()">Cetak / Print</button>
-                <a href="/spk-saw-siswa-sma5serang-app/user/landing/ranking" class="btn btn-secondary">Kembali</a>
+                <a href="/apksawsmanli/user/landing/ranking" class="btn btn-secondary">Kembali</a>
             </div>';
 
         echo '</div></body></html>';
@@ -243,7 +263,7 @@ class UserLandingController extends Controller {
 
         session_regenerate_id(true);
 
-        header('Location: /spk-saw-siswa-sma5serang-app/auth/login');
+        header('Location: /apksawsmanli/auth/login');
         exit;
     }
 }

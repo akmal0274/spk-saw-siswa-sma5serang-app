@@ -6,7 +6,7 @@
             </h5>
         </div>
         <div class="card-body">
-            <form action="/spk-saw-siswa-sma5serang-app/admin/subkriteria/tambah/<?= $data['kriteria']['id'] ?>" method="POST">
+            <form action="/apksawsmanli/admin/subkriteria/tambah/<?= $data['kriteria']['id'] ?>" method="POST">
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <div class="form-row">
@@ -18,7 +18,6 @@
                         <label for="nilai_subkriteria">Nilai Subkriteria</label>
                         <select id="nilai_subkriteria" name="nilai_subkriteria" class="form-control" required>
                             <option value="">-- Pilih Nilai --</option>
-                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -27,7 +26,7 @@
                         </select>
                     </div>
                 </div>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/subkriteria" class="btn btn-secondary">
+                <a href="/apksawsmanli/admin/subkriteria" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -63,10 +62,10 @@
                         <td><?= htmlspecialchars($sub['nama_subkriteria']) ?></td>
                         <td><?= htmlspecialchars($sub['nilai_subkriteria']) ?></td>
                         <td>
-                            <a href="/spk-saw-siswa-sma5serang-app/admin/subkriteria/edit/<?= $sub['id'] ?>" class="btn btn-info">
+                            <a href="/apksawsmanli/admin/subkriteria/edit/<?= $sub['id'] ?>" class="btn btn-info">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="/spk-saw-siswa-sma5serang-app/admin/subkriteria/hapus/<?= $sub['id'] ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin ingin menghapus subkriteria ini?')">
+                            <form action="/apksawsmanli/admin/subkriteria/hapus/<?= $sub['id'] ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin ingin menghapus subkriteria ini?')">
                                 <button type="submit" class="btn btn-info">
                                     <i class="fas fa-trash"></i>
                                 </button>

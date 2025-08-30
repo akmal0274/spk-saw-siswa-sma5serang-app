@@ -32,7 +32,7 @@
                 <h5 class="m-0 text-gray-900">
                     Ranking Akhir - Tahun <?= htmlspecialchars($tahun_aktif) ?>
                 </h5>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/rankingakhir/cetak?tahun=<?= urlencode($tahun_aktif) ?>"
+                <a href="/apksawsmanli/admin/rankingakhir/cetak?tahun=<?= urlencode($tahun_aktif) ?>"
                    class="btn btn-secondary">
                     <i class="fas fa-print"></i> Cetak Tahun Ini
                 </a>

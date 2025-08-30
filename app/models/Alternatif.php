@@ -85,7 +85,12 @@ class Alternatif extends Model {
         return mysqli_fetch_all($query, MYSQLI_ASSOC);
     }
 
+    public function validasiTahun($tahun)
+    {
+        $query = "UPDATE siswa SET is_valid = 1 WHERE tahun_ajaran_siswa = '$tahun'";
 
+        return mysqli_query($this->conn, $query);
+    }
 
     public function insert($id_siswa, $id_kriteria, $id_subkriteria){
         $id_siswa = (int)$id_siswa;

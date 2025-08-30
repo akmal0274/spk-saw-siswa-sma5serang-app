@@ -4,7 +4,7 @@
             <h5 class="modal-title text-gray-900">
                 Detail Penilaian - <?= htmlspecialchars($data['siswa']['nama_siswa']) ?>
             </h5>
-            <a href="/spk-saw-siswa-sma5serang-app/admin/alternatif" class="btn btn-primary">
+            <a href="/apksawsmanli/admin/alternatif" class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </div>
@@ -40,10 +40,10 @@
             </table>
             <?php if (count($data['penilaian']) > 0): ?>
                 <div class="text-left">
-                    <a href="/spk-saw-siswa-sma5serang-app/admin/alternatif/edit/<?= $data['siswa']['id'] ?>" class="btn btn-info">
+                    <a href="/apksawsmanli/admin/alternatif/edit/<?= $data['siswa']['id'] ?>" class="btn btn-info">
                         <i class="fas fa-edit"></i> Edit
                     </a>
-                    <form action="/spk-saw-siswa-sma5serang-app/admin/alternatif/hapus/<?= $data['siswa']['id'] ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin untuk menghapus penilaian ini?')">
+                    <form action="/apksawsmanli/admin/alternatif/hapus/<?= $data['siswa']['id'] ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin untuk menghapus penilaian ini?')">
                         <button type="submit" class="btn btn-info">
                             <i class="fas fa-trash"></i> Hapus
                         </button>

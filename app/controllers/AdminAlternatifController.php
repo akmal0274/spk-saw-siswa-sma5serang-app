@@ -3,6 +3,20 @@ class AdminAlternatifController extends Controller {
     public function index() {
         $model_kriteria = $this->model('Kriteria');
         $data['kriteria'] = $model_kriteria->getAll();
+        $total_bobot = 0;
+        foreach ($data['kriteria'] as $k) {
+            $total_bobot += $k['bobot_kriteria']; // sesuaikan nama kolomnya
+        }
+
+        if ($total_bobot < 1) {
+            // Simpan pesan ke session
+            $_SESSION['message'] = "Total bobot kriteria belum 1 (saat ini: {$total_bobot}). Silakan periksa kembali.";
+            $_SESSION['alert-type'] = "error";
+
+            // Redirect ke halaman kriteria
+            header("Location: /apksawsmanli/admin/kriteria/index");
+            exit;
+        }
         $model_siswa = $this->model('Siswa');
         $data['siswa'] = $model_siswa->getAllSiswa();
         $model_alternatif = $this->model('Alternatif');
@@ -36,7 +50,7 @@ class AdminAlternatifController extends Controller {
             if (!$id_siswa || empty($subkriteria)) {
                 $_SESSION['message'] = "Data tidak lengkap. Harap isi semua form.";
                 $_SESSION['alert-type'] = "danger";
-                header('Location: /spk-saw-siswa-sma5serang-app/admin/alternatif/tambah/' . $id);
+                header('Location: /apksawsmanli/admin/alternatif/tambah/' . $id);
                 exit;
             }
 
@@ -60,7 +74,7 @@ class AdminAlternatifController extends Controller {
                 $_SESSION['alert-type'] = "danger";
             }
 
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/alternatif');
+            header('Location: /apksawsmanli/admin/alternatif');
             exit;
         }
 
@@ -110,7 +124,7 @@ class AdminAlternatifController extends Controller {
                 $_SESSION['alert-type'] = "danger";
             }
 
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/alternatif/lihat/' . $id);
+            header('Location: /apksawsmanli/admin/alternatif/lihat/' . $id);
             exit;
         }
 
@@ -120,7 +134,7 @@ class AdminAlternatifController extends Controller {
     public function hapus($id) {
         $model = $this->model('Alternatif');
         $model->delete($id);
-        header('Location: /spk-saw-siswa-sma5serang-app/admin/alternatif');
+        header('Location: /apksawsmanli/admin/alternatif');
     }
 
 }

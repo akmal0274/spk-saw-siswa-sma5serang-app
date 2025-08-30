@@ -25,7 +25,7 @@
                             <td><?= htmlspecialchars($k['kode_kriteria']) ?></td>
                             <td><?= htmlspecialchars($k['nama_kriteria']) ?></td>
                             <td>
-                                <a href="/spk-saw-siswa-sma5serang-app/admin/subkriteria/tambah/<?= $k['id'] ?>" class="btn btn-info">
+                                <a href="/apksawsmanli/admin/subkriteria/tambah/<?= $k['id'] ?>" class="btn btn-info">
                                     <i class="fas fa-plus"></i> Masukkan Subkriteria 
                                 </a>
                             </td>

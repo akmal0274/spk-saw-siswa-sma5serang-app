@@ -13,15 +13,15 @@ class Controller {
 
         if (!isset($_SESSION['user'])) {
             if ($current !== 'AuthController') {
-                header('Location: /spk-saw-siswa-sma5serang-app/auth/login');
+                header('Location: /apksawsmanli/auth/login');
                 exit;
             }
         } else {
             if ($current === 'AuthController') {
                 if ($_SESSION['user']['role'] === 'admin') {
-                    header('Location: /spk-saw-siswa-sma5serang-app/admin/dashboard');
+                    header('Location: /apksawsmanli/admin/dashboard');
                 } else {
-                    header('Location: /spk-saw-siswa-sma5serang-app/user/landing/home');
+                    header('Location: /apksawsmanli/user/landing/home');
                 }
                 exit;
             }

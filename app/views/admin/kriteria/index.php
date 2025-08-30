@@ -6,10 +6,10 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="modal-title text-gray-900">Daftar Data Kriteria</h5>
             <div>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/kriteria/tambah" class="btn btn-primary mr-2">
+                <a href="/apksawsmanli/admin/kriteria/tambah" class="btn btn-primary mr-2">
                     <i class="fas fa-plus"></i> Tambah Data
                 </a>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/kriteria/cetak" class="btn btn-secondary">
+                <a href="/apksawsmanli/admin/kriteria/cetak" class="btn btn-secondary">
                     <i class="fas fa-print"></i> Cetak Data
                 </a>
             </div>
@@ -37,10 +37,10 @@
                             <td><?= ucfirst(htmlspecialchars($k['tipe_kriteria'])) ?></td>
                             <td><?= htmlspecialchars($k['bobot_kriteria']) ?></td>
                             <td>
-                                <a href="/spk-saw-siswa-sma5serang-app/admin/kriteria/edit/<?= $k['id'] ?>" class="btn btn-info">
+                                <a href="/apksawsmanli/admin/kriteria/edit/<?= $k['id'] ?>" class="btn btn-info">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="/spk-saw-siswa-sma5serang-app/admin/kriteria/hapus/<?= $k['id'] ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin untuk menghapus kriteria ini?')">
+                                <form action="/apksawsmanli/admin/kriteria/hapus/<?= $k['id'] ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah anda yakin untuk menghapus kriteria ini?')">
                                     <button type="submit" class="btn btn-info">
                                         <i class="fas fa-trash"></i>
                                     </button>

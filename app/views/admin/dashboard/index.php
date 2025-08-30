@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <h2 class="mt-4 text-gray-900 align-middle text-center">Selamat Datang di Sistem Pendukung Keputusan Menggunakan Metode SAW Pemilihan Siswa SMA N 5 Serang Terbaik</h2>
+    <h2 class="mt-4 text-gray-900 align-middle text-center">Selamat Datang di Sistem Pendukung Keputusan Menggunakan Metode SAW Pemilihan Siswa SMAN 5 Serang Terbaik</h2>
     <hr class="sidebar-divider my-2">
     <div class="row">
         <div class="col-md-3 mb-3">

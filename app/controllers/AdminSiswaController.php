@@ -23,7 +23,7 @@ class AdminSiswaController extends Controller {
                 $_SESSION['message'] = "Siswa berhasil ditambahkan.";
                 $_SESSION['alert-type'] = "success";
             }
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/siswa');
+            header('Location: /apksawsmanli/admin/siswa');
             exit;
         }
         $this->view('admin/siswa/tambah');
@@ -45,7 +45,7 @@ class AdminSiswaController extends Controller {
                 $_SESSION['message'] = "Siswa berhasil diedit.";
                 $_SESSION['alert-type'] = "success";
             }
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/siswa');
+            header('Location: /apksawsmanli/admin/siswa');
             exit;
         }
 
@@ -55,7 +55,7 @@ class AdminSiswaController extends Controller {
     public function hapus($id) {
         $model = $this->model('Siswa');
         $model->delete($id);
-        header('Location: /spk-saw-siswa-sma5serang-app/admin/siswa');
+        header('Location: /apksawsmanli/admin/siswa');
     }
 
     public function cetak() {
@@ -99,7 +99,7 @@ class AdminSiswaController extends Controller {
 
         echo '<div class="text-center no-print">
                 <button class="btn btn-primary" onclick="window.print()">Cetak / Print</button>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/siswa" class="btn btn-secondary">Kembali</a>
+                <a href="/apksawsmanli/admin/siswa" class="btn btn-secondary">Kembali</a>
             </div>';
 
         echo '</div></body></html>';

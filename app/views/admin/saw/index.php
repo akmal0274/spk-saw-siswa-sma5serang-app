@@ -169,9 +169,9 @@
 
                                                 if ($nilai !== null && $hasil !== null) {
                                                     if ($tipe === 'benefit') {
-                                                        echo "{$nilai} / {$maxval} = " . number_format($hasil, 2);
+                                                        echo "{$nilai} / {$maxval} = " . number_format($hasil, 3);
                                                     } else {
-                                                        echo "{$minval} / {$nilai} = " . number_format($hasil, 2);
+                                                        echo "{$minval} / {$nilai} = " . number_format($hasil, 3);
                                                     }
                                                 } else {
                                                     echo "-";
@@ -208,7 +208,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php $no = 1; foreach ($group['ranking'] as $r): ?>
+                        <?php $no = 1; foreach ($group['ranking_unsorted'] as $r): ?>
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $r['nama_siswa'] ?></td>

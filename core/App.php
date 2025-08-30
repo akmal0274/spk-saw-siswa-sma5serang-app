@@ -71,7 +71,7 @@ class App {
             $this->method = $url[1];
             unset($url[1]);
         } else {
-            if ($this->controller === 'AuthController') {
+            if ($this->controllerName === 'AuthController') {
                 $this->method = 'login';
             } else {
                 $this->method = 'index';

@@ -13,7 +13,7 @@
             height: 100vh;
         }
         .login-left {
-            background: url('/spk-saw-siswa-sma5serang-app/public/assets/school.jpeg') no-repeat center center;
+            background: url('/apksawsmanli/public/assets/school.jpeg') no-repeat center center;
             background-size: cover;
             position: relative;
             color: white;
@@ -42,7 +42,7 @@
             <div class="col-md-6 login-left d-flex align-items-center justify-content-center">
                 <div class="overlay"></div>
                 <div class="content text-center">
-                    <img src="/spk-saw-siswa-sma5serang-app/public/assets/logo.png" alt="Logo Sekolah" style="max-width: 120px;">
+                    <img src="/apksawsmanli/public/assets/logo.png" alt="Logo Sekolah" style="max-width: 120px;">
                     <h4 class="mt-3">SISTEM PENUNJANG KEPUTUSAN</h4>
                     <h2>PENENTUAN SISWA BERPRESTASI</h2>
                 </div>
@@ -52,7 +52,7 @@
             <div class="col-md-6 d-flex align-items-center">
                 <div class="login-form w-100">
                     <h3 class="mb-4 text-center">Register</h3>
-                    <form action="/spk-saw-siswa-sma5serang-app/auth/register" method="POST">
+                    <form action="/apksawsmanli/auth/register" method="POST">
                         <div class="form-group">
                             <input type="text" name="username" class="form-control" placeholder="Username" required>
                         </div>
@@ -66,7 +66,7 @@
                         <button type="submit" class="btn btn-success btn-block">Daftar</button>
                     </form>
                     <div class="mt-3 text-center">
-                        Sudah punya akun? <a href="/spk-saw-siswa-sma5serang-app/auth/login">Login sekarang</a>
+                        Sudah punya akun? <a href="/apksawsmanli/auth/login">Login sekarang</a>
                     </div>
                 </div>
             </div>

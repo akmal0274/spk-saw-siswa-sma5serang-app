@@ -73,6 +73,7 @@ class AdminSawController extends Controller
                     'nilai_akhir' => $a['nilai_akhir']
                 ];
             }
+            $ranking_unsorted = $ranking;
 
             // Urutkan ranking
             usort($ranking, function ($a, $b) {
@@ -82,6 +83,7 @@ class AdminSawController extends Controller
             $hasil[$tahun] = [
                 'alternatif' => $alternatif_tahun,
                 'ranking' => $ranking,
+                'ranking_unsorted' => $ranking_unsorted,
                 'max' => $max,
                 'min' => $min,
                 'matrix' => $matrix

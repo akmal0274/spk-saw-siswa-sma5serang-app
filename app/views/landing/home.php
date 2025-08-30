@@ -2,19 +2,19 @@
 <div id="schoolCarousel" class="carousel slide h-100 w-100" data-bs-ride="carousel">
     <div class="carousel-inner h-100">
         <div class="carousel-item active h-100">
-            <img src="/spk-saw-siswa-sma5serang-app/public/assets/school_photo_1.jpeg"
+            <img src="/apksawsmanli/public/assets/school_photo_1.jpeg"
                 class="d-block w-100 h-100 object-fit-cover"
                 alt="Foto Sekolah 1">
         </div>
 
         <div class="carousel-item h-100">
-            <img src="/spk-saw-siswa-sma5serang-app/public/assets/school_photo_2.jpeg"
+            <img src="/apksawsmanli/public/assets/school_photo_2.jpeg"
                 class="d-block w-100 h-100 object-fit-cover"
                 alt="Foto Sekolah 2">
         </div>
 
         <div class="carousel-item h-100">
-            <img src="/spk-saw-siswa-sma5serang-app/public/assets/school_photo_3.jpg"
+            <img src="/apksawsmanli/public/assets/school_photo_3.jpg"
                 class="d-block w-100 h-100 object-fit-cover"
                 alt="Foto Sekolah 3">
         </div>

@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark">
             <!-- Logo & Judul -->
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="/spk-saw-siswa-sma5serang-app/public/assets/logo.png" alt="Logo" width="60" height="60" class="me-2">
+                <img src="/apksawsmanli/public/assets/logo.png" alt="Logo" width="60" height="60" class="me-2">
                 <div class="mx-3">
                     <div class="small">Sistem Pendukung Keputusan</div>
                     <div class="fw-bold">SMA N 5 Serang</div>
@@ -53,19 +53,19 @@
                 <!-- Menu Tengah -->
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link <?= isActive('user/landing/home') ?>" href="/spk-saw-siswa-sma5serang-app/user/landing/home">Home</a>
+                        <a class="nav-link <?= isActive('user/landing/home') ?>" href="/apksawsmanli/user/landing/home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= isActive('user/landing/about') ?>" href="/spk-saw-siswa-sma5serang-app/user/landing/about">About</a>
+                        <a class="nav-link <?= isActive('user/landing/about') ?>" href="/apksawsmanli/user/landing/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= isActive('user/landing/ranking') ?>" href="/spk-saw-siswa-sma5serang-app/user/landing/ranking">Ranking</a>
+                        <a class="nav-link <?= isActive('user/landing/ranking') ?>" href="/apksawsmanli/user/landing/ranking">Ranking</a>
                     </li>
                 </ul>
 
                 <!-- Logout Kanan -->
                 <div class="d-flex">
-                    <a href="/spk-saw-siswa-sma5serang-app/user/landing/logout" class="btn btn-outline-light">Logout</a>
+                    <a href="/apksawsmanli/user/landing/logout" class="btn btn-outline-light">Logout</a>
                 </div>
             </div>
         </nav>
@@ -79,7 +79,7 @@
     </main>
     <footer class="sticky-footer bg-white">
         <div class="container my-auto text-center text-black">
-            <span style="color: black;">&copy; Sistem Pendukung Keputusan Siswa SMA N 5 Serang Terbaik</span>
+            <span style="color: black;">&copy; Sistem Pendukung Keputusan Siswa SMAN 5 Serang Terbaik</span>
         </div>
     </footer>
     

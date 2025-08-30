@@ -16,10 +16,14 @@ class AuthController extends Controller {
                     'role' => $user['role']
                 ];
 
+                if (!isset($_SESSION['csrf_token'])) {
+                    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+                }
+
                 if ($user['role'] === 'admin') {
-                    header('Location: /spk-saw-siswa-sma5serang-app/admin/dashboard');
+                    header('Location: /apksawsmanli/admin/dashboard');
                 } else {
-                    header('Location: /spk-saw-siswa-sma5serang-app/user/landing/home');
+                    header('Location: /apksawsmanli/user/landing/home');
                 }
                 exit;
             } else {
@@ -38,7 +42,7 @@ class AuthController extends Controller {
 
             $this->model('User')->create($username, $email, $password);
             $_SESSION['success'] = "Pendaftaran berhasil. Silakan login.";
-            header('Location: /spk-saw-siswa-sma5serang-app/auth/login');
+            header('Location: /apksawsmanli/auth/login');
             exit;
         }
 
@@ -60,7 +64,7 @@ class AuthController extends Controller {
             );
         }
         session_regenerate_id(true);
-        header('Location: /spk-saw-siswa-sma5serang-app/auth/login');
+        header('Location: /apksawsmanli/auth/login');
         exit;
     }
 }

@@ -17,14 +17,14 @@ class AdminKriteriaController extends Controller {
             }
             $model = $this->model('Kriteria');
             $result = $model->insert($_POST['nama_kriteria'], $_POST['kode_kriteria'], $_POST['tipe_kriteria'], $_POST['bobot_kriteria']);
-            if ($result === false) {
-                $_SESSION['message'] = "Gagal menambahkan kriteria. Kode mungkin sudah ada atau data tidak valid.";
+            if ($result['success'] === false) {
+                $_SESSION['message'] = $result['message'];
                 $_SESSION['alert-type'] = "danger";
             } else {
-                $_SESSION['message'] = "Kriteria berhasil ditambahkan.";
+                $_SESSION['message'] = $result['message'];
                 $_SESSION['alert-type'] = "success";
             }
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/kriteria');
+            header('Location: /apksawsmanli/admin/kriteria');
             exit;
         }
         $this->view('admin/kriteria/tambah');
@@ -39,14 +39,14 @@ class AdminKriteriaController extends Controller {
                 die('CSRF token tidak valid!');
             }
             $result = $model->update($id, $_POST['nama_kriteria'], $_POST['tipe_kriteria'],$_POST['bobot_kriteria']);
-            if ($result === false) {
-                $_SESSION['message'] = "Gagal mengedit kriteria. Kode mungkin sudah ada atau data tidak valid.";
+            if ($result['success'] === false) {
+                $_SESSION['message'] = $result['message'];
                 $_SESSION['alert-type'] = "danger";
             } else {
-                $_SESSION['message'] = "Kriteria berhasil diedit.";
+                $_SESSION['message'] = $result['message'];
                 $_SESSION['alert-type'] = "success";
             }
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/kriteria');
+            header('Location: /apksawsmanli/admin/kriteria');
             exit;
         }
 
@@ -56,7 +56,7 @@ class AdminKriteriaController extends Controller {
     public function hapus($id) {
         $model = $this->model('Kriteria');
         $model->delete($id);
-        header('Location: /spk-saw-siswa-sma5serang-app/admin/kriteria');
+        header('Location: /apksawsmanli/admin/kriteria');
     }
 
     public function cetak() {
@@ -84,7 +84,7 @@ class AdminKriteriaController extends Controller {
         echo '</tbody></table>';
         echo '<div class="text-center no-print">
                 <button class="btn btn-primary" onclick="window.print()">Cetak / Print</button>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/kriteria" class="btn btn-secondary">Kembali</a>
+                <a href="/apksawsmanli/admin/kriteria" class="btn btn-secondary">Kembali</a>
             </div>';
         echo '</div></body></html>';
     }

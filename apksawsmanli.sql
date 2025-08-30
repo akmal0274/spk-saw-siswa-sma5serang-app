@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2025 at 05:23 PM
+-- Generation Time: Aug 30, 2025 at 02:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `spk_saw_siswa_sma5serang_app`
+-- Database: `apksawsmanli`
 --
 
 -- --------------------------------------------------------
@@ -66,7 +66,11 @@ INSERT INTO `nilai_alternatif` (`id`, `id_siswa`, `id_kriteria`, `id_subkriteria
 (8, 3, 1, 1),
 (9, 3, 2, 3),
 (10, 4, 1, 10),
-(11, 4, 2, 4);
+(11, 4, 2, 4),
+(12, 5, 1, 2),
+(13, 5, 2, 3),
+(14, 6, 1, 8),
+(15, 6, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -79,17 +83,21 @@ CREATE TABLE `siswa` (
   `nama_siswa` varchar(255) NOT NULL,
   `NIS_siswa` int(11) NOT NULL,
   `kelas_siswa` varchar(100) NOT NULL,
-  `tahun_ajaran_siswa` varchar(100) NOT NULL
+  `jenis_kelamin_siswa` varchar(10) NOT NULL,
+  `tahun_ajaran_siswa` varchar(100) NOT NULL,
+  `is_valid` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nama_siswa`, `NIS_siswa`, `kelas_siswa`, `tahun_ajaran_siswa`) VALUES
-(2, 'Budi', 1, 'XII B', '2024/2025'),
-(3, 'Dina', 2, 'XII A', '2024/2025'),
-(4, 'Aldo', 3, 'XII B', '2024/2025');
+INSERT INTO `siswa` (`id`, `nama_siswa`, `NIS_siswa`, `kelas_siswa`, `jenis_kelamin_siswa`, `tahun_ajaran_siswa`, `is_valid`) VALUES
+(2, 'Budi', 1, 'XII B', 'L', '2024/2025', 1),
+(3, 'Dina', 2, 'XII A', 'P', '2024/2025', 1),
+(4, 'Aldo', 3, 'XII B', 'L', '2024/2025', 1),
+(5, 'Udin', 11, 'XII A', 'L', '2023/2024', 0),
+(6, 'Bani', 12, 'XII B', 'L', '2023/2024', 0);
 
 -- --------------------------------------------------------
 
@@ -199,13 +207,13 @@ ALTER TABLE `kriteria`
 -- AUTO_INCREMENT for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subkriteria`

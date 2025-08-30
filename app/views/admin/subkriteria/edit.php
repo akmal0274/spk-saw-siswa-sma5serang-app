@@ -4,12 +4,12 @@
             <h5 class="modal-title text-gray-900">
                 Edit Subkriteria - <?= htmlspecialchars($data['kriteria']['nama_kriteria']) ?>
             </h5>
-            <a href="/spk-saw-siswa-sma5serang-app/admin/subkriteria" class="btn btn-primary">
+            <a href="/apksawsmanli/admin/subkriteria" class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </div>
         <div class="card-body">
-            <form action="/spk-saw-siswa-sma5serang-app/admin/subkriteria/edit/<?= $data['subkriteria']['id'] ?>" method="POST">
+            <form action="/apksawsmanli/admin/subkriteria/edit/<?= $data['subkriteria']['id'] ?>" method="POST">
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <div class="form-row">
@@ -28,7 +28,7 @@
                         <label for="nilai_subkriteria">Nilai Subkriteria</label>
                         <select id="nilai_subkriteria" name="nilai_subkriteria" class="form-control" required>
                             <option value="">-- Pilih Nilai --</option>
-                            <?php for ($i = 0; $i <= 5; $i++): ?>
+                            <?php for ($i = 1; $i <= 5; $i++): ?>
                                 <option value="<?= $i ?>" <?= $data['subkriteria']['nilai_subkriteria'] == $i ? 'selected' : '' ?>>
                                     <?= $i ?>
                                 </option>

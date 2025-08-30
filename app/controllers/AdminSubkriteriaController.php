@@ -16,7 +16,7 @@ class AdminSubkriteriaController extends Controller {
         if (!$data['kriteria']) {
             $_SESSION['message'] = "Kriteria tidak ditemukan.";
             $_SESSION['alert-type'] = "danger";
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/subkriteria');
+            header('Location: /apksawsmanli/admin/subkriteria');
             exit;
         }
         if (empty($_SESSION['csrf_token'])) {
@@ -36,7 +36,7 @@ class AdminSubkriteriaController extends Controller {
                 $_SESSION['message'] = "Subkriteria berhasil ditambahkan.";
                 $_SESSION['alert-type'] = "success";
             }
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/subkriteria/tambah/' . $id);
+            header('Location: /apksawsmanli/admin/subkriteria/tambah/' . $id);
             exit;
         }
         $this->view('admin/subkriteria/tambah', $data);
@@ -60,7 +60,7 @@ class AdminSubkriteriaController extends Controller {
                 $_SESSION['message'] = "Subkriteria berhasil diedit.";
                 $_SESSION['alert-type'] = "success";
             }
-            header('Location: /spk-saw-siswa-sma5serang-app/admin/subkriteria/tambah/' . $data['subkriteria']['id_kriteria']);
+            header('Location: /apksawsmanli/admin/subkriteria/tambah/' . $data['subkriteria']['id_kriteria']);
             exit;
         }
 
@@ -70,7 +70,7 @@ class AdminSubkriteriaController extends Controller {
     public function hapus($id) {
         $model = $this->model('Subkriteria');
         $model->delete($id);
-        header('Location: /spk-saw-siswa-sma5serang-app/admin/subkriteria');
+        header('Location: /apksawsmanli/admin/subkriteria');
     }
 
 }

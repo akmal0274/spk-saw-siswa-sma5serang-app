@@ -68,21 +68,32 @@
 
                 <div class="container-fluid">
                     <?php if (!empty($_SESSION['message'])): ?>
-                        <div class="alert alert-<?php echo $_SESSION['alert-type']; ?> alert-dismissible fade show">
-                            <?php echo $_SESSION['message']; ?>
-                            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-                        </div>
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        <script>
+                            Swal.fire({
+                                icon: '<?php echo $_SESSION['alert-type']; ?>', // success, error, warning, info, question
+                                title: '<?php echo $_SESSION['alert-type'] === "success" ? "Berhasil!" : "Peringatan!"; ?>',
+                                text: '<?php echo $_SESSION['message']; ?>',
+                                confirmButtonText: 'OK'
+                            });
+                        </script>
                         <?php unset($_SESSION['message']); unset($_SESSION['alert-type']); ?>
                     <?php endif; ?>
 
                     <?php if (!empty($errors)): ?>
-                        <div class="alert alert-danger">
-                            <ul>
-                                <?php foreach ($errors as $error): ?>
-                                    <li><?php echo $error; ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        <script>
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Terjadi Kesalahan',
+                                html: `<ul style="text-align:left;">
+                                    <?php foreach ($errors as $error): ?>
+                                        <li><?php echo $error; ?></li>
+                                    <?php endforeach; ?>
+                                </ul>`,
+                                confirmButtonText: 'Coba Lagi'
+                            });
+                        </script>
                     <?php endif; ?>
 
                     <!-- CONTENT -->
@@ -92,7 +103,7 @@
 
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto text-center text-black">
-                    <span style="color: black;">&copy; Sistem Pendukung Keputusan Siswa SMA N 5 Serang Terbaik</span>
+                    <span style="color: black;">&copy; Sistem Pendukung Keputusan Siswa SMAN 5 Serang Terbaik</span>
                 </div>
             </footer>
         </div>
@@ -112,7 +123,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <a href="/spk-saw-siswa-sma5serang-app/auth/logout" class="btn btn-danger">Logout</a>
+                    <a href="/apksawsmanli/auth/logout" class="btn btn-danger">Logout</a>
                 </div>
             </div>
         </div>

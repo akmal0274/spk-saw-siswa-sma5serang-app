@@ -4,12 +4,12 @@
             <h5 class="modal-title text-gray-900">
                 Tambah Penilaian - <?= htmlspecialchars($data['siswa']['nama_siswa']) ?>
             </h5>
-            <a href="/spk-saw-siswa-sma5serang-app/admin/alternatif" class="btn btn-primary">
+            <a href="/apksawsmanli/admin/alternatif" class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </div>
         <div class="card-body">
-            <form action="/spk-saw-siswa-sma5serang-app/admin/alternatif/tambah/<?= $data['siswa']['id'] ?>" method="POST">
+            <form action="/apksawsmanli/admin/alternatif/tambah/<?= $data['siswa']['id'] ?>" method="POST">
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <input type="hidden" name="id_siswa" value="<?= $data['siswa']['id'] ?>">
                 <?php foreach ($data['kriteria'] as $kriteria): ?>

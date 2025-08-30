@@ -26,7 +26,7 @@
                             <td><?= htmlspecialchars($s['nama_siswa']) ?></td>
                             <td>
                                 <?php if (!siswaPunyaPenilaian($s['id'], $data['alternatif'])): ?>
-                                    <a href="/spk-saw-siswa-sma5serang-app/admin/alternatif/tambah/<?= $s['id'] ?>" class="btn btn-secondary">
+                                    <a href="/apksawsmanli/admin/alternatif/tambah/<?= $s['id'] ?>" class="btn btn-secondary">
                                         <i class="fas fa-plus"></i> Masukkan Penilaian
                                     </a>
                                 <?php else: ?>
@@ -35,7 +35,7 @@
                             </td>
                             <td>
                                 <?php if (siswaPunyaPenilaian($s['id'], $data['alternatif'])): ?>
-                                    <a href="/spk-saw-siswa-sma5serang-app/admin/alternatif/lihat/<?= $s['id'] ?>" class="btn btn-info">
+                                    <a href="/apksawsmanli/admin/alternatif/lihat/<?= $s['id'] ?>" class="btn btn-info">
                                         <i class="fas fa-eye"></i> Lihat Data
                                     </a>
                                 <?php else: ?>
@@ -69,3 +69,21 @@ function siswaPunyaPenilaian($siswa_id, $alternatifs) {
 }
 ?>
 
+<!-- Scroll position handler -->
+<script>
+  // Simpan posisi scroll saat klik tombol "Lihat Data"
+  document.querySelectorAll('a[href*="alternatif/lihat"]').forEach(link => {
+    link.addEventListener('click', () => {
+      localStorage.setItem('scrollY', window.scrollY);
+    });
+  });
+
+  // Kembalikan scroll saat halaman dimuat ulang
+  window.addEventListener('load', () => {
+    const scrollY = localStorage.getItem('scrollY');
+    if (scrollY !== null) {
+      window.scrollTo(0, parseInt(scrollY));
+      localStorage.removeItem('scrollY');
+    }
+  });
+</script>

@@ -214,7 +214,7 @@ class AdminRankingakhirController extends Controller
 
         echo '<div class="text-center no-print mt-4">
                 <button class="btn btn-primary" onclick="window.print()">Cetak / Print</button>
-                <a href="/spk-saw-siswa-sma5serang-app/admin/rankingakhir" class="btn btn-secondary">Kembali</a>
+                <a href="/apksawsmanli/admin/rankingakhir" class="btn btn-secondary">Kembali</a>
             </div>';
 
         echo '</div></body></html>';

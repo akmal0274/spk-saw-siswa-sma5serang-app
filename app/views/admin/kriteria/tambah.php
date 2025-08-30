@@ -2,12 +2,12 @@
     <div class="card shadow">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="modal-title text-gray-900">Tambah Kriteria</h5>
-            <a href="/spk-saw-siswa-sma5serang-app/admin/kriteria" class="btn btn-primary">
+            <a href="/apksawsmanli/admin/kriteria" class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </div>
         <div class="card-body">
-            <form action="/spk-saw-siswa-sma5serang-app/admin/kriteria/tambah" method="POST">
+            <form action="/apksawsmanli/admin/kriteria/tambah" method="POST">
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
                 <div class="form-row">
